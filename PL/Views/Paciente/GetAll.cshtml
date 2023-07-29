@@ -1,0 +1,72 @@
+﻿@model ML.Paciente
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="align-content:center;">
+    <h1>Pacientes</h1>
+</div>
+
+<br />
+<hr />
+
+<div class="container"">
+    <a type="submit" class="btn btn-success" href=" @Url.Action("Form", "Paciente")">
+        <i class="glyphicon glyphicon-user"></i>
+    </a>
+</div>
+
+<div class="container table-responsive" style="align-content:center;" >
+
+    @if (Model.Pacientes != null)
+    {
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>ACTUALIZAR</th>
+                    <th style="display:none;">IdPaciente</th>
+                    <th>Nombre</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Fecha Nacimiento</th>
+                    <th>Fecha Ingreso</th>
+                    <th style="display:none;">IdTipoSangre</th>
+                    <th>Tipo de Sangre</th>
+                    <th>Sexo</th>
+                    <th>Sintomas</th>
+                    <th>BAJA</th>
+                </tr>
+            </thead>
+            @foreach (ML.Paciente paciente in Model.Pacientes)
+            {
+                <tbody>
+                    <tr>
+                        <td>
+                            <a class="btn btn-warning" href=" @Url.Action("Form","Paciente", new { idPaciente = @paciente.IdPaciente }) " type="submit">
+                                <i class="glyphicon glyphicon-pencil"></i>
+                            </a>
+                        </td>
+                        <td scope="col" style="display:none;">@paciente.IdPaciente</td>
+                        <td scope="col">@paciente.Nombre</td>
+                        <td scope="col">@paciente.Ap</td>
+                        <td scope="col">@paciente.Am</td>
+                        <td scope="col">@paciente.FechaNacimiento</td>
+                        <td scope="col">@paciente.FechaIngreso</td>
+                        <td scope="col" style="display:none;">@paciente.TipoSangre.IdTipoSangre</td>
+                        <td scope="col">@paciente.TipoSangre.Nombre</td>
+                        <td scope="col">@paciente.Sexo</td>
+                        <td scope="col">@paciente.Sintomas</td>
+                        <td scope="col">
+                            <a href="@Url.Action("Delete","Paciente", new { idPaciente = @paciente.IdPaciente })" class="btn btn-danger" onclick="return confirm('Estas seguro que deseas eliminar este registro?');" type="submit">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    }
+
+</div>
+

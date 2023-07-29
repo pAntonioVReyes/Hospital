@@ -1,0 +1,89 @@
+﻿@model ML.Paciente
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="text-align:center">
+    <h1>@ViewBag.Titulo</h1>
+</div>
+
+<br />
+<hr />
+    
+<div class="row">
+                
+    <div class="col-md-12">
+
+        <div class="input-group">
+            <div class="col-md-3">
+                <label class="control-label col-md-2" style="font:menu italic bold">ID</label>
+                @Html.TextBoxFor(model => model.IdPaciente, new { @class = "form-control", @readonly = true })
+                @Html.ValidationMessageFor(model => model.IdPaciente)
+            </div>
+        </div>
+
+        <br />
+
+        <h3 style="text-align:center">Información Personal</h3>
+
+        <hr />
+        <br />
+
+        <div class="input-group">
+
+            <div class="col-md-3">
+                <label class="control-label col-md-2" style="font:menu italic bold; text-align:center">Nombre</label>
+                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Nombre)
+            </div>
+
+            <div class="col-md-3">
+                <label class="control-label col-md-2" style="font: menu italic bold; text-align: center">Apellido_Paterno</label>
+                @Html.TextBoxFor(model => model.Ap, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Ap)
+            </div>
+
+            <div class="col-md-3">
+                <label class="control-label col-md-2" style="font: menu italic bold; text-align: center">Apellido_Materno</label>
+                @Html.TextBoxFor(model => model.Am, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Am)
+            </div>
+
+            <div class="col-md-3">
+                <label class="control-label col-md-2" style="font:menu italic bold">Sexo</label>
+                @if (Model.Sexo != null)
+                {
+                    <select class="form-control" id="pacienteGenero" name="@Model.Sexo" value="@Model.Sexo" required>
+                        <option>Femenino</option>
+                        <option>Masculino</option>
+                        <option>SinGenero</option>
+                        <option>Otro</option>
+                    </select>
+                }
+                else
+                {
+                    <select class="form-control" id="pacienteGenero" name="paciente.Sexo" value="@Model.Sexo" required >
+                        <option>Femenino</option>
+                        <option>Masculino</option>
+                        <option>SinGenero</option>
+                        <option>Otro</option>
+                    </select>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+            
+
+
+
+
